@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Timetable | Study Management</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">📚</div>
+
+            <div>
+                <h2>Study</h2>
+                <span>Management</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <p class="menu-title">MAIN</p>
+
+            <a href="/dashboard" class="menu-item">
+                <span>🏠</span>
+                Dashboard
+            </a>
+
+            <a href="/timetable" class="menu-item active">
+                <span>⏰</span>
+                Timetable
+            </a>
+
+            <a href="/tasks" class="menu-item">
+                <span>✅</span>
+                Tasks
+            </a>
+
+            <p class="menu-title">LEARNING</p>
+
+            <a href="/subjects" class="menu-item">
+                <span>📚</span>
+                Subjects
+            </a>
+
+            <a href="/dsa" class="menu-item">
+                <span>💻</span>
+                DSA Tracker
+            </a>
+
+            <a href="/skills" class="menu-item">
+                <span>🚀</span>
+                CSE Skills
+            </a>
+
+            <a href="/study-timer" class="menu-item">
+                <span>⏱️</span>
+                Study Timer
+            </a>
+
+            <p class="menu-title">ACADEMIC</p>
+
+            <a href="/notes" class="menu-item">
+                <span>📝</span>
+                Notes
+            </a>
+
+            <a href="/attendance" class="menu-item">
+                <span>📅</span>
+                Attendance
+            </a>
+
+            <a href="/marks" class="menu-item">
+                <span>📊</span>
+                Marks & CGPA
+            </a>
+
+            <a href="/goals" class="menu-item">
+                <span>🎯</span>
+                Goals
+            </a>
+
+            <a href="/analytics" class="menu-item">
+                <span>📈</span>
+                Analytics
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="/profile" class="menu-item">
+                <span>⚙️</span>
+                Settings
+            </a>
+
+            <a href="/api/logout" class="menu-item logout">
+                <span>🚪</span>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <header class="top-header">
+
+            <div>
+
+                <p class="welcome-small">
+                    Study Planner
+                </p>
+
+                <h1>
+                    My Timetable ⏰
+                </h1>
+
+                <p class="header-subtitle">
+                    Plan your study sessions and manage your time.
+                </p>
+
+            </div>
+
+            <div class="profile">
+
+                <div class="notification">
+                    🔔
+                </div>
+
+                <div class="profile-avatar">
+                    S
+                </div>
+
+                <div class="profile-info">
+                    <strong id="profileName">Student</strong>
+                    <span id="profileCourse">B.Tech CSE</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- Page Actions -->
+        <section class="page-actions">
+
+            <div>
+                <h2>Weekly Schedule</h2>
+
+                <p>
+                    Organize your academic and coding activities.
+                </p>
+            </div>
+
+            <button class="primary-btn" onclick="openTimetableForm()">
+                + Add Schedule
+            </button>
+
+        </section>
+
+
+        <!-- Add Schedule Form -->
+        <section class="task-form-card" id="timetableForm" style="display: none;">
+
+            <div class="card-header">
+
+                <div>
+                    <h3>Add Schedule Item</h3>
+                    <p>Plan an activity for a day of your week.</p>
+                </div>
+
+                <button class="close-btn" onclick="closeTimetableForm()">
+                    ×
+                </button>
+
+            </div>
+
+            <div class="form-grid">
+
+                <div class="input-group">
+                    <label for="ttDay">Day</label>
+                    <select id="ttDay">
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                        <option value="Sunday">Sunday</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="ttSubject">Activity / Subject</label>
+                    <input type="text" id="ttSubject" placeholder="e.g. DSA Practice">
+                </div>
+
+                <div class="input-group">
+                    <label for="ttStart">Start Time</label>
+                    <input type="time" id="ttStart" value="09:00">
+                </div>
+
+                <div class="input-group">
+                    <label for="ttEnd">End Time</label>
+                    <input type="time" id="ttEnd" value="10:00">
+                </div>
+
+                <div class="input-group">
+                    <label for="ttCategory">Type</label>
+                    <select id="ttCategory">
+                        <option value="study">📚 Study</option>
+                        <option value="coding">💻 Coding</option>
+                        <option value="project">🚀 Project</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <button class="primary-btn" onclick="addTimetableItem()">
+                Add Schedule
+            </button>
+
+        </section>
+
+
+        <!-- Week Selector -->
+        <div class="week-selector" id="timetableWeekSelector">
+
+            <p class="empty-hint">Loading week...</p>
+
+        </div>
+
+
+        <!-- Timetable -->
+        <section class="timetable-card" id="timetableCard">
+
+            <p class="empty-hint">Loading schedule...</p>
+
+        </section>
+
+
+        <!-- Bottom Cards -->
+        <section class="timetable-summary">
+
+            <div class="summary-box">
+
+                <span>📚</span>
+
+                <div>
+                    <small>Study Time</small>
+                    <strong id="ttSummaryStudy">0h 0m</strong>
+                </div>
+
+            </div>
+
+
+            <div class="summary-box">
+
+                <span>💻</span>
+
+                <div>
+                    <small>Coding Time</small>
+                    <strong id="ttSummaryCoding">0h 0m</strong>
+                </div>
+
+            </div>
+
+
+            <div class="summary-box">
+
+                <span>🚀</span>
+
+                <div>
+                    <small>Project Time</small>
+                    <strong id="ttSummaryProject">0h 0m</strong>
+                </div>
+
+            </div>
+
+
+            <div class="summary-box">
+
+                <span>🎯</span>
+
+                <div>
+                    <small>Total Planned (Week)</small>
+                    <strong id="ttSummaryTotal">0h 0m</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+
+</html>

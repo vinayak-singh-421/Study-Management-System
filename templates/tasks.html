@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tasks | Study Management</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">📚</div>
+
+            <div>
+                <h2>Study</h2>
+                <span>Management</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <p class="menu-title">MAIN</p>
+
+            <a href="/dashboard" class="menu-item">
+                <span>🏠</span>
+                Dashboard
+            </a>
+
+            <a href="/timetable" class="menu-item">
+                <span>⏰</span>
+                Timetable
+            </a>
+
+            <a href="/tasks" class="menu-item active">
+                <span>✅</span>
+                Tasks
+            </a>
+
+            <p class="menu-title">LEARNING</p>
+
+            <a href="/subjects" class="menu-item">
+                <span>📚</span>
+                Subjects
+            </a>
+
+            <a href="/dsa" class="menu-item">
+                <span>💻</span>
+                DSA Tracker
+            </a>
+
+            <a href="/skills" class="menu-item">
+                <span>🚀</span>
+                CSE Skills
+            </a>
+
+            <a href="/study-timer" class="menu-item">
+                <span>⏱️</span>
+                Study Timer
+            </a>
+
+            <p class="menu-title">ACADEMIC</p>
+
+            <a href="/notes" class="menu-item">
+                <span>📝</span>
+                Notes
+            </a>
+
+            <a href="/attendance" class="menu-item">
+                <span>📅</span>
+                Attendance
+            </a>
+
+            <a href="/marks" class="menu-item">
+                <span>📊</span>
+                Marks & CGPA
+            </a>
+
+            <a href="/goals" class="menu-item">
+                <span>🎯</span>
+                Goals
+            </a>
+
+            <a href="/analytics" class="menu-item">
+                <span>📈</span>
+                Analytics
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="/profile" class="menu-item">
+                <span>⚙️</span>
+                Settings
+            </a>
+
+            <a href="/api/logout" class="menu-item logout">
+                <span>🚪</span>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <header class="top-header">
+
+            <div>
+
+                <p class="welcome-small">
+                    Productivity
+                </p>
+
+                <h1>
+                    My Tasks ✅
+                </h1>
+
+                <p class="header-subtitle">
+                    Stay organized and complete your daily goals.
+                </p>
+
+            </div>
+
+            <div class="profile">
+
+                <div class="notification">
+                    🔔
+                </div>
+
+                <div class="profile-avatar">
+                    S
+                </div>
+
+                <div class="profile-info">
+                    <strong id="profileName">Student</strong>
+                    <span id="profileCourse">B.Tech CSE</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- Task Statistics -->
+        <section class="stats-grid task-stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon purple">
+                    📋
+                </div>
+
+                <div>
+                    <span>Total Tasks</span>
+                    <h2 id="totalTasks">8</h2>
+                    <small>All tasks</small>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    ✅
+                </div>
+
+                <div>
+                    <span>Completed</span>
+                    <h2 id="completedTasks">5</h2>
+                    <small>Finished tasks</small>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    ⏳
+                </div>
+
+                <div>
+                    <span>Pending</span>
+                    <h2 id="pendingTasks">3</h2>
+                    <small>Remaining</small>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    🔥
+                </div>
+
+                <div>
+                    <span>High Priority</span>
+                    <h2>2</h2>
+                    <small>Important tasks</small>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Task Controls -->
+        <section class="task-controls">
+
+            <div class="task-search">
+
+                <span>🔎</span>
+
+                <input
+                    type="text"
+                    id="taskSearch"
+                    placeholder="Search tasks..."
+                    onkeyup="searchTasks()"
+                >
+
+            </div>
+
+
+            <div class="task-filters">
+
+                <button class="filter-btn active"
+                        onclick="filterTasks('all', this)">
+                    All
+                </button>
+
+                <button class="filter-btn"
+                        onclick="filterTasks('pending', this)">
+                    Pending
+                </button>
+
+                <button class="filter-btn"
+                        onclick="filterTasks('completed', this)">
+                    Completed
+                </button>
+
+            </div>
+
+
+            <button class="primary-btn"
+                    onclick="openTaskForm()">
+                + Add Task
+            </button>
+
+        </section>
+
+
+        <!-- Add Task Form -->
+        <section class="task-form-card" id="taskForm">
+
+            <div class="card-header">
+
+                <div>
+                    <h3>Add New Task</h3>
+                    <p>Create a task for your study plan.</p>
+                </div>
+
+                <button class="close-btn"
+                        onclick="closeTaskForm()">
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="input-group">
+
+                    <label for="taskTitle">
+                        Task Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="taskTitle"
+                        placeholder="e.g. Complete DSA Arrays"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="taskCategory">
+                        Category
+                    </label>
+
+                    <select id="taskCategory">
+
+                        <option value="Study">
+                            Study
+                        </option>
+
+                        <option value="Coding">
+                            Coding
+                        </option>
+
+                        <option value="Project">
+                            Project
+                        </option>
+
+                        <option value="Revision">
+                            Revision
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="taskDate">
+                        Due Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="taskDate"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="taskPriority">
+                        Priority
+                    </label>
+
+                    <select id="taskPriority">
+
+                        <option value="Low">
+                            Low
+                        </option>
+
+                        <option value="Medium" selected>
+                            Medium
+                        </option>
+
+                        <option value="High">
+                            High
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <button class="primary-btn"
+                    onclick="addTask()">
+                Add Task
+            </button>
+
+        </section>
+
+
+        <!-- Task List -->
+        <section class="dashboard-card task-page-card">
+
+            <div class="card-header">
+
+                <div>
+                    <h3>My Task List</h3>
+                    <p>Track your daily study activities.</p>
+                </div>
+
+                <span class="task-date">
+                    Today
+                </span>
+
+            </div>
+
+
+            <div class="task-page-list" id="taskList">
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+
+</html>

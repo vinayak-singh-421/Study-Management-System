@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profile & Settings</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="profile-page">
+
+    <div class="profile-container">
+
+        <div class="profile-header">
+            <h1>Profile & Settings ⚙️</h1>
+            <p>Manage your study profile</p>
+        </div>
+
+        <div class="profile-card">
+
+            <div class="profile-avatar">
+                👨‍💻
+            </div>
+
+            <div class="profile-info">
+               <h2 id="profileName">
+                    {{ profile[1] if profile else "Student" }}
+               </h2>
+
+              <p id="profileCourse">
+                   {{ profile[2] if profile else "B.Tech CSE" }}
+             </p>
+
+               {% if profile and profile[3] %}
+             <p>{{ profile[3] }}</p>
+              {% endif %}
+           </div>
+
+        </div>
+
+        <div class="settings-card">
+
+            <h2>Personal Information</h2>
+
+            <form id="profileForm" method="POST" action="{{ url_for('profile') }}">
+
+                <label>Name</label>
+                <input
+                    type="text"
+                    id="profileNameInput"
+                    name="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+                <label>Course</label>
+                <input
+                    type="text"
+                    id="profileCourseInput"
+                    name="course"
+                    placeholder="B.Tech CSE"
+                    required
+                >
+
+                <label>College</label>
+                <input
+                    type="text"
+                    id="profileCollegeInput"
+                    name="college"
+                    placeholder="Enter college name"
+                >
+
+                <button type="submit">
+                    Save Profile
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CSE Skills | Study Management</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="skills-page">
+
+        <div class="skills-container">
+
+
+            <!-- Header -->
+
+            <div class="skills-header">
+
+                <div>
+
+                    <h1>
+                        CSE Skills 💻
+                    </h1>
+
+                    <p>
+                        Track your programming and technical skills.
+                    </p>
+
+                </div>
+
+                <button
+                    class="primary-btn"
+                    onclick="showSkillForm()"
+                >
+                    + Add Skill
+                </button>
+
+            </div>
+
+
+            <!-- Add Skill Form -->
+
+            <div
+                class="skill-form"
+                id="skillForm"
+                style="display: none;"
+            >
+
+                <input
+                    type="text"
+                    id="skillName"
+                    placeholder="Skill name"
+                >
+
+
+                <select id="skillLevel">
+
+                    <option value="">
+                        Select skill level
+                    </option>
+
+                    <option value="Beginner">
+                        Beginner
+                    </option>
+
+                    <option value="Intermediate">
+                        Intermediate
+                    </option>
+
+                    <option value="Advanced">
+                        Advanced
+                    </option>
+
+                </select>
+
+
+                <div class="skill-form-actions">
+
+                    <button
+                        class="primary-btn"
+                        onclick="saveSkill()"
+                    >
+                        Save Skill
+                    </button>
+
+                    <button
+                        class="secondary-btn"
+                        onclick="hideSkillForm()"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Skills Grid -->
+
+            <div
+                class="skills-grid"
+                id="skillsGrid"
+            >
+
+                <div class="empty-skills">
+
+                    <div>
+                        💻
+                    </div>
+
+                    <h3>
+                        No skills added
+                    </h3>
+
+                    <p>
+                        Add your technical skills to track your progress.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <script
+        src="{{ url_for('static', filename='js/main.js') }}"
+    ></script>
+
+</body>
+
+</html>

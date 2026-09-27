@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Analytics | Study Management</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="analytics-page">
+
+        <div class="analytics-container">
+
+
+            <!-- Header -->
+
+            <div class="analytics-header">
+
+                <div>
+
+                    <h1>
+                        Study Analytics 📈
+                    </h1>
+
+                    <p>
+                        Get an overview of your study progress.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Statistics -->
+
+            <div class="analytics-grid">
+
+
+                <!-- Subjects -->
+
+                <div class="analytics-card">
+
+                    <div class="analytics-icon">
+                        📚
+                    </div>
+
+                    <span>
+                        Total Subjects
+                    </span>
+
+                    <strong id="analyticsSubjects">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <!-- Notes -->
+
+                <div class="analytics-card">
+
+                    <div class="analytics-icon">
+                        📝
+                    </div>
+
+                    <span>
+                        Total Notes
+                    </span>
+
+                    <strong id="analyticsNotes">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <!-- Attendance -->
+
+                <div class="analytics-card">
+
+                    <div class="analytics-icon">
+                        📅
+                    </div>
+
+                    <span>
+                        Overall Attendance
+                    </span>
+
+                    <strong id="analyticsAttendance">
+                        0%
+                    </strong>
+
+                </div>
+
+
+                <!-- Goals -->
+
+                <div class="analytics-card">
+
+                    <div class="analytics-icon">
+                        🎯
+                    </div>
+
+                    <span>
+                        Total Goals
+                    </span>
+
+                    <strong id="analyticsGoals">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <!-- Skills -->
+
+                <div class="analytics-card">
+
+                    <div class="analytics-icon">
+                        💻
+                    </div>
+
+                    <span>
+                        Total Skills
+                    </span>
+
+                    <strong id="analyticsSkills">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <!-- Study Time -->
+
+                <div class="analytics-card">
+
+                    <div class="analytics-icon">
+                        ⏱️
+                    </div>
+
+                    <span>
+                        Today's Study Time
+                    </span>
+
+                    <strong id="analyticsStudyTime">
+                        0 min
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- Performance Message -->
+
+            <div class="analytics-message">
+
+                <h2>
+                    Keep Going! 🚀
+                </h2>
+
+                <p id="analyticsMessage">
+                    Start adding your study data to see your progress here.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <script
+        src="{{ url_for('static', filename='js/main.js') }}"
+    ></script>
+
+</body>
+
+</html>

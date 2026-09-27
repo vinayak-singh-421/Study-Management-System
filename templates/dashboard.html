@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Study Management</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="dashboard-layout">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="brand-icon">📚</div>
+
+                <div>
+                    <h2>Study</h2>
+                    <span>Management</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+
+                <p class="menu-title">MAIN</p>
+
+                <a href="/dashboard" class="menu-item active">
+                    <span>🏠</span>
+                    Dashboard
+                </a>
+
+                <a href="/timetable" class="menu-item">
+                   <span>⏰</span>
+                   Timetable
+                </a>
+
+                <a href="/tasks" class="menu-item">
+                   <span>✅</span>
+                   Tasks
+                </a>
+
+                <p class="menu-title">LEARNING</p>
+
+                <a href="/subjects" class="menu-item">
+                    <span>📚</span>
+                    Subjects
+                </a>
+
+                <a href="/dsa" class="menu-item">
+                    <span>💻</span>
+                    DSA Tracker
+                </a>
+
+                <a href="{{ url_for('skills') }}" class="menu-item">
+                    <span>🚀</span>
+                    CSE Skills
+                </a>
+
+                <a href="{{ url_for('study_timer') }}" class="menu-item">
+                    <span>⏱️</span>
+                    Study Timer
+                </a>
+
+                <p class="menu-title">ACADEMIC</p>
+
+                <a href="/notes" class="menu-item">
+                    <span>📝</span>
+                    Notes
+                </a>
+
+                <a href="{{ url_for('attendance') }}" class="menu-item">
+                    <span>📅</span>
+                    Attendance
+                </a>
+
+                <a href="{{ url_for('marks') }}" class="menu-item">
+                    <span>📊</span>
+                    Marks & CGPA
+                </a>
+
+                <a href="{{ url_for('goals') }}" class="menu-item">
+                    <span>🎯</span>
+                    Goals
+                </a>
+
+                <a href="{{ url_for('analytics') }}" class="menu-item">
+                    <span>📈</span>
+                    Analytics
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <a href="{{ url_for('profile') }}" class="menu-item">
+                    <span>⚙️</span>
+                    Settings
+                </a>
+
+                <a href="/api/logout" class="menu-item logout">
+                    <span>🚪</span>
+                    Logout
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Top Header -->
+            <header class="top-header">
+
+                <div>
+                    <p class="welcome-small" id="dashDate">
+                        Loading date...
+                    </p>
+
+                    <h1 id="dashGreeting">
+                        Good Morning, Student! 👋
+                    </h1>
+
+                    <p class="header-subtitle">
+                        Let's make today productive.
+                    </p>
+                </div>
+
+                <div class="profile">
+
+                    <div class="notification">
+                        🔔
+                    </div>
+
+                    <div class="profile-avatar">
+                        S
+                    </div>
+
+                    <div class="profile-info">
+                        <strong id="profileName">Student</strong>
+                        <span id="profileCourse">B.Tech CSE</span>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- Statistics -->
+            <section class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        📚
+                    </div>
+
+                    <div>
+                        <span>Study Time</span>
+                        <h2 id="statStudyTime">0h 0m</h2>
+                        <small>Today</small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        💻
+                    </div>
+
+                    <div>
+                        <span>Coding Time</span>
+                        <h2 id="statCodingTime">0h 0m</h2>
+                        <small>Today</small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ✅
+                    </div>
+
+                    <div>
+                        <span>Tasks</span>
+                        <h2 id="statTasks">0 / 0</h2>
+                        <small>Completed</small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        🔥
+                    </div>
+
+                    <div>
+                        <span>Study Streak</span>
+                        <h2 id="statStreak">0 Days</h2>
+                        <small id="statStreakSub">Keep going!</small>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Dashboard Grid -->
+            <section class="dashboard-grid">
+
+
+                <!-- Today's Schedule -->
+                <div class="dashboard-card schedule-card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h3>Today's Schedule</h3>
+                            <p>Your planned activities</p>
+                        </div>
+
+                        <button class="small-btn" onclick="addDashboardScheduleItem()">
+                            + Add
+                        </button>
+
+                    </div>
+
+
+                    <div class="schedule-list" id="dashScheduleList">
+
+                        <p class="empty-hint">Loading schedule...</p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Today's Tasks -->
+                <div class="dashboard-card tasks-card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h3>Today's Tasks</h3>
+                            <p id="dashTasksSubtitle">0 of 0 completed</p>
+                        </div>
+
+                        <a href="/tasks">
+                            View All
+                        </a>
+
+                    </div>
+
+
+                    <div class="task-list" id="dashTaskList">
+
+                        <p class="empty-hint">Loading tasks...</p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Weekly Progress -->
+                <div class="dashboard-card progress-card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h3>Weekly Study Progress</h3>
+                            <p>Total study hours</p>
+                        </div>
+
+                        <strong class="total-hours" id="dashWeeklyTotal">
+                            0h
+                        </strong>
+
+                    </div>
+
+
+                    <div class="chart" id="dashWeeklyChart">
+
+                        <p class="empty-hint">Loading progress...</p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Overall Progress -->
+                <div class="dashboard-card overall-card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h3>Overall Progress</h3>
+                            <p>Your learning journey</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress-circle" id="dashProgressCircle">
+
+                        <div>
+                            <strong id="dashOverallPercent">0%</strong>
+                            <span>Complete</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress-info">
+
+                        <div>
+                            <span>Academic</span>
+                            <strong id="dashAcademicPercent">0%</strong>
+                        </div>
+
+                        <div>
+                            <span>Coding</span>
+                            <strong id="dashCodingPercent">0%</strong>
+                        </div>
+
+                        <div>
+                            <span>Projects</span>
+                            <strong id="dashProjectsPercent">0%</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+        </main>
+
+    </div>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

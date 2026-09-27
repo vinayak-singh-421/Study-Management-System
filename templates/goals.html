@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Goals | Study Management</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="goals-page">
+
+        <div class="goals-container">
+
+
+            <!-- Header -->
+
+            <div class="goals-header">
+
+                <div>
+
+                    <h1>My Goals 🎯</h1>
+
+                    <p>
+                        Set and track your academic and study goals.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="showGoalForm()"
+                >
+                    + Add Goal
+                </button>
+
+            </div>
+
+
+            <!-- Add Goal Form -->
+
+            <div
+                class="goal-form"
+                id="goalForm"
+                style="display: none;"
+            >
+
+                <input
+                    type="text"
+                    id="goalTitle"
+                    placeholder="Enter your goal"
+                >
+
+
+                <input
+                    type="number"
+                    id="goalTarget"
+                    placeholder="Target value"
+                    min="1"
+                >
+
+
+                <input 
+                    type="number" 
+                    id="goalProgress" 
+                    placeholder="Current progress"
+                    min="0"
+                >
+
+
+                <div class="goal-form-actions">
+
+                    <button
+                        class="primary-btn"
+                        onclick="saveGoal()"
+                    >
+                        Save Goal
+                    </button>
+
+
+                    <button
+                        class="secondary-btn"
+                        onclick="hideGoalForm()"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Goals Grid -->
+
+            <div
+                class="goals-grid"
+                id="goalsGrid"
+            >
+
+                <div class="empty-goals">
+
+                    <div>🎯</div>
+
+                    <h3>No goals added</h3>
+
+                    <p>
+                        Add your first study goal to get started.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <script
+        src="{{ url_for('static', filename='js/main.js') }}"
+    ></script>
+
+</body>
+
+</html>

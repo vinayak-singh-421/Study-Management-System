@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Attendance | Study Management</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="attendance-page">
+
+        <div class="attendance-container">
+
+
+            <!-- Header -->
+
+            <div class="attendance-header">
+
+                <div>
+
+                    <h1>
+                        Attendance 📅
+                    </h1>
+
+                    <p>
+                        Track your subject-wise attendance.
+                    </p>
+
+                </div>
+
+                <button
+                    class="primary-btn"
+                    onclick="showAttendanceForm()"
+                >
+                    + Add Subject
+                </button>
+
+            </div>
+
+
+            <!-- Add Subject Form -->
+
+            <div
+                class="attendance-form"
+                id="attendanceForm"
+                style="display: none;"
+            >
+
+                <input
+                    type="text"
+                    id="attendanceSubject"
+                    name="subject"
+                    placeholder="Subject name"
+                >
+
+
+                <input
+                    type="number"
+                    id="totalClasses"
+                    name="total_classes"
+                    placeholder="Total classes"
+                    min="0"
+                >
+
+
+                <input
+                    type="number"
+                    id="attendedClasses"
+                    name="attended_classes"
+                    placeholder="Attended classes"
+                    min="0"
+                >
+
+
+                <div class="attendance-form-actions">
+
+                    <button
+                        class="primary-btn"
+                        onclick="saveAttendance()"
+                    >
+                        Save
+                    </button>
+
+                    <button
+                        class="secondary-btn"
+                        onclick="hideAttendanceForm()"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Overall Attendance -->
+
+            <div class="attendance-summary">
+
+                <div>
+
+                    <span>
+                        Overall Attendance
+                    </span>
+
+                    <strong id="overallAttendance">
+                        0%
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Attendance Cards -->
+
+            <div
+                class="attendance-grid"
+                id="attendanceGrid"
+            >
+
+                <div class="empty-attendance">
+
+                    <div>
+                        📅
+                    </div>
+
+                    <h3>
+                        No subjects added
+                    </h3>
+
+                    <p>
+                        Add your subjects to track attendance.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <script
+        src="{{ url_for('static', filename='js/main.js') }}"
+    ></script>
+
+</body>
+
+</html>

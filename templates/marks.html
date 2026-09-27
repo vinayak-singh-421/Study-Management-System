@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Marks & CGPA | Study Management</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="marks-page">
+
+        <div class="marks-container">
+
+
+            <!-- Header -->
+
+            <div class="marks-header">
+
+                <div>
+
+                    <h1>
+                        Marks & CGPA 📊
+                    </h1>
+
+                    <p>
+                        Track your academic performance subject-wise.
+                    </p>
+
+                </div>
+
+                <button
+                    class="primary-btn"
+                    onclick="showMarksForm()"
+                >
+                    + Add Subject
+                </button>
+
+            </div>
+
+
+            <!-- Add Marks Form -->
+
+            <div
+                class="marks-form"
+                id="marksForm"
+                style="display: none;"
+            >
+
+                <input
+                    type="text"
+                    id="marksSubject"
+                    placeholder="Subject name"
+                >
+
+
+                <input
+                    type="number"
+                    id="marksObtained"
+                    placeholder="Marks obtained"
+                    min="0"
+                >
+
+
+                <input
+                    type="number"
+                    id="marksTotal"
+                    placeholder="Total marks"
+                    min="1"
+                >
+
+
+                <input
+                    type="number"
+                    id="marksCredits"
+                >
+
+
+                <div class="marks-form-actions">
+
+                    <button
+                        class="primary-btn"
+                        onclick="saveMarks()"
+                    >
+                        Save Marks
+                    </button>
+
+                    <button
+                        class="secondary-btn"
+                        onclick="hideMarksForm()"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Performance Summary -->
+
+            <div class="marks-summary">
+
+                <div>
+
+                    <span>
+                        Average Percentage
+                    </span>
+
+                    <strong id="averagePercentage">
+                        0%
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Estimated SGPA
+                    </span>
+
+                    <strong id="estimatedSGPA">
+                        0.00
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Marks Cards -->
+
+            <div
+                class="marks-grid"
+                id="marksGrid"
+            >
+
+                <div class="empty-marks">
+
+                    <div>
+                        📊
+                    </div>
+
+                    <h3>
+                        No marks added
+                    </h3>
+
+                    <p>
+                        Add your subject marks to track performance.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <script
+        src="{{ url_for('static', filename='js/main.js') }}"
+    ></script>
+
+</body>
+
+</html>

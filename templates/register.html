@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | Study Management</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="login-card register-card">
+
+            <div class="login-logo">
+                📚
+            </div>
+
+            <h1>Create Account</h1>
+
+            <p class="login-subtitle">
+                Start managing your study journey
+            </p>
+
+            <p id="registerError" class="auth-error"></p>
+
+            <form id="registerForm">
+
+                <div class="input-group">
+                    <label for="name">Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="course">Course</label>
+
+                    <select id="course" required>
+                        <option value="">Select your course</option>
+                        <option value="btech-cse">B.Tech CSE</option>
+                        <option value="bca">BCA</option>
+                        <option value="mca">MCA</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="semester">Semester</label>
+
+                    <select id="semester" required>
+                        <option value="">Select semester</option>
+                        <option value="1">1st Semester</option>
+                        <option value="2">2nd Semester</option>
+                        <option value="3">3rd Semester</option>
+                        <option value="4">4th Semester</option>
+                        <option value="5">5th Semester</option>
+                        <option value="6">6th Semester</option>
+                        <option value="7">7th Semester</option>
+                        <option value="8">8th Semester</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create a password"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="confirm-password">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirm-password"
+                        placeholder="Confirm your password"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="login-btn" id="registerBtn">
+                    Create Account
+                </button>
+
+            </form>
+
+            <p class="register-text">
+                Already have an account?
+                <a href="/login">Login</a>
+            </p>
+
+            <a href="/" class="back-home">
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+
+</html>

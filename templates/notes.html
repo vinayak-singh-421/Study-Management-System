@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Notes | Study Management</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="notes-page">
+
+        <div class="notes-container">
+
+
+            <!-- Header -->
+
+            <div class="notes-header">
+
+                <div>
+
+                    <h1>
+                        My Notes 📝
+                    </h1>
+
+                    <p>
+                        Save important study points and revise them anytime.
+                    </p>
+
+                </div>
+
+                <button
+                    class="primary-btn"
+                    onclick="showNoteForm()"
+                >
+                    + Add Note
+                </button>
+
+            </div>
+
+
+            <!-- Add Note Form -->
+
+            <div
+                class="note-form"
+                id="noteForm"
+                style="display: none;"
+            >
+
+                <input
+                    type="text"
+                    id="noteTitle"
+                    placeholder="Note title"
+                >
+
+
+                <select id="noteSubject">
+
+                    <option value="">
+                        Select Subject
+                    </option>
+
+                    <option value="DSA">
+                        DSA
+                    </option>
+
+                    <option value="Web Technology">
+                        Web Technology
+                    </option>
+
+                    <option value="DBMS">
+                        DBMS
+                    </option>
+
+                    <option value="Operating System">
+                        Operating System
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+
+                <textarea
+                    id="noteContent"
+                    placeholder="Write your notes here..."
+                ></textarea>
+
+
+                <div class="note-form-actions">
+
+                    <button
+                        class="primary-btn"
+                        onclick="saveNote()"
+                    >
+                        Save Note
+                    </button>
+
+                    <button
+                        class="secondary-btn"
+                        onclick="hideNoteForm()"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Notes List -->
+
+            <div
+                class="notes-grid"
+                id="notesGrid"
+            >
+
+                <div class="empty-notes">
+
+                    <div>
+                        📝
+                    </div>
+
+                    <h3>
+                        No notes yet
+                    </h3>
+
+                    <p>
+                        Create your first study note.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <script
+        src="{{ url_for('static', filename='js/main.js') }}"
+    ></script>
+
+</body>
+
+</html>
